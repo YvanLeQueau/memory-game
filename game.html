@@ -5,26 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <h1>Memory Game</h1>
-    <h2>Jouer</h2>
+    <h2>Jeu</h2>
 
     <nav>
         <a href="./index.html">Accueil</a>
+        <a href="./game.html">Jouer</a>
         <a href="./join.html">S'inscrire</a>
         <a href="./login.html">Se connecter</a>
         <a href="./profil.html">Profil</a>
-        <a href="./game.html">Jouer</a>
     </nav>
 
-    <p>Nombre de coups :</p>
+    <div id="divGame" class="frame">
+        <p>Nombre de coups : <span id='nbMoves'></span></p>
 
-    <!-- tableau -->
+        <div id="grid"></div>
 
-    <p>Appuyer sur la <strong>barre d'espace</strong> pour relancer le jeu.</p>
+        <p>Appuyer sur la <strong>barre d'espace</strong> pour relancer le jeu.</p>
+    </div>
 
     <script type="module" src="./js/app.js"></script>
 </body>
+
 </html>
