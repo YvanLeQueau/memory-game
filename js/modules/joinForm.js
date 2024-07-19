@@ -21,7 +21,7 @@ function saveUser(user) {
     const users = convertUsers
     if (datasFromLocalstorage != null) {
         users.forEach(elt => {
-            if (elt.name === user.name) {
+            if (elt.name === user.name || elt.mail === user.mail) {
                 alert("Compte déjà créé")
             } else {
                 users.push(user)
