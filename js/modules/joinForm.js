@@ -16,21 +16,23 @@ function validatePassword(elt) {
 const KEY_USER = 'users'
 
 function saveUser(user) {
-    const users = getUsers()
-    console.log(user)
-    console.log(users)
-    //if (users.include(user)) {
-    //    alert("Compte déjà créé")
-    //} else {
-        users.push(user)
-    //}
-    localStorage.setItem(KEY_USER, JSON.stringify(users))
-}
-
-function getUsers() {
     const datasFromLocalstorage = localStorage.getItem(KEY_USER)
     const convertUsers = JSON.parse(datasFromLocalstorage) || []
-    return convertUsers
+    const users = convertUsers
+    if (datasFromLocalstorage != null) {
+        users.forEach(elt => {
+            if (elt.name === user.name) {
+                alert("Compte déjà créé")
+            } else {
+                users.push(user)
+            } 
+        })        
+    } else {
+        users.push(user)
+        alert("Compte créé avec succès")
+    }
+    
+    localStorage.setItem(KEY_USER, JSON.stringify(users))
 }
 
 export{validateName,validateEmail,validatePassword,saveUser}

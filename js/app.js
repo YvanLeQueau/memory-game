@@ -5,51 +5,51 @@ import{validateName,validateEmail,validatePassword,saveUser} from "./modules/joi
 const memoryCardArray = [
     {
       name: '1',
-      img: 'images/memory-legume/1.svg'
+      img: 'images/japan-style/banzai.png'
     },
     {
       name: '1',
-      img: 'images/memory-legume/1.svg'
+      img: 'images/japan-style/banzai.png'
     },
     {
       name: '2',
-      img: 'images/memory-legume/2.svg'
+      img: 'images/japan-style/fuji.png'
     },
     {
       name: '2',
-      img: 'images/memory-legume/2.svg'
+      img: 'images/japan-style/fuji.png'
     },
     {
       name: '3',
-      img: 'images/memory-legume/3.svg'
+      img: 'images/japan-style/gaicha.png'
     },
     {
       name: '3',
-      img: 'images/memory-legume/3.svg'
+      img: 'images/japan-style/gaicha.png'
     },
     {
       name: '4',
-      img: 'images/memory-legume/4.svg'
+      img: 'images/japan-style/lantern.png'
     },
     {
       name: '4',
-      img: 'images/memory-legume/4.svg'
+      img: 'images/japan-style/lantern.png'
     },
     {
       name: '5',
-      img: 'images/memory-legume/5.svg'
+      img: 'images/japan-style/mask.png'
     },
     {
       name: '5',
-      img: 'images/memory-legume/5.svg'
+      img: 'images/japan-style/mask.png'
     },
     {
       name: '6',
-      img: 'images/memory-legume/6.svg'
+      img: 'images/japan-style/samourai.png'
     },
     {
       name: '6',
-      img: 'images/memory-legume/6.svg'
+      img: 'images/japan-style/samourai.png'
     }
 ]
 const cardsChosen = []
@@ -87,7 +87,7 @@ function createBoard(tab) {
       let i = 0
       tab.forEach(elt => {
           const memoryCard = document.createElement('img')
-          memoryCard.setAttribute('src', 'images/question.svg')
+          memoryCard.setAttribute('src', 'images/japan-style/back-card.png')
           memoryCard.setAttribute('id', i)
           memoryCard.addEventListener('click', flipCard)
           $grid.appendChild(memoryCard)
@@ -101,6 +101,7 @@ function flipCard() {
         cpt++
         document.querySelector('#nbMoves').textContent = cpt
         let cardId = this.getAttribute('id')
+        this.classList.add("flipped")
         this.setAttribute('src', memoryCardArray[cardId].img)
         cardsChosen.push(memoryCardArray[cardId].name)
         cardsChosenId.push(cardId)
@@ -115,7 +116,8 @@ function checkForMatch() {
     const memoryCards = document.querySelectorAll('img')
     if (cardsChosenId[0] === cardsChosenId[1]) {
         //alert('Même carte sélectionnée !')
-        memoryCards[cardsChosenId[0]].setAttribute('src', 'images/question.svg')
+        memoryCards[cardsChosenId[0]].setAttribute('src', 'images/japan-style/back-card.png')
+        memoryCards[cardsChosenId[0]].classList.remove("flipped")
     } else if (cardsChosen[0] === cardsChosen[1]) {
         //alert('Gagné !')
         if (!cardsWon.includes(cardsChosen[0])) {
@@ -125,8 +127,10 @@ function checkForMatch() {
         document.getElementById(cardsChosenId[1]).removeEventListener('click', flipCard)
     } else {
         //alert('Perdu !')
-        memoryCards[cardsChosenId[0]].setAttribute('src', 'images/question.svg')
-        memoryCards[cardsChosenId[1]].setAttribute('src', 'images/question.svg')
+        memoryCards[cardsChosenId[0]].setAttribute('src', 'images/japan-style/back-card.png')
+        memoryCards[cardsChosenId[1]].setAttribute('src', 'images/japan-style/back-card.png')
+        memoryCards[cardsChosenId[0]].classList.remove("flipped")
+        memoryCards[cardsChosenId[1]].classList.remove("flipped")
     }
     cardsChosen.splice(0, cardsChosen.length)
     cardsChosenId.splice(0, cardsChosenId.length)
@@ -197,7 +201,6 @@ if ($joinForm !== null) {
 
       if (nbErrors === 0) {
           saveUser(user)
-          alert("Compte créé avec succès")
       }
 
     })
